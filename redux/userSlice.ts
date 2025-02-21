@@ -1,18 +1,24 @@
+import { User } from "@/utils/types";
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
-  id: 1,
+const initialState: User = {
+  id: "1",
   username: "Joseline_Addams",
+  pp: "https://picsum.photos/id/247/300/300",
   hobbies: "Gitar çalmak, dizi izlemek.",
   nationality: "Türkiye",
+  gender: "female",
   sign: "Aslan",
-  height: "167cm",
+  height: "167",
   weight: "54kg",
   job: "Mimar",
   location: "Türkiye",
   dob: "2001-07-12",
   followers: 2415,
   following: 341,
+  isVerified: true,
+  diamonds: 85,
+  membershipLevel: "VIP",
   photos: [
     "https://picsum.photos/id/237/200/300",
     "https://picsum.photos/id/236/200/300",
