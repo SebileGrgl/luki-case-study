@@ -4,11 +4,11 @@ export const countries = [
     icon: require("@/assets/images/flag-icons/turkiye.png"),
   },
   {
-    name: "Türkiye",
+    name: "Almanya",
     icon: require("@/assets/images/flag-icons/turkiye.png"),
   },
   {
-    name: "Türkiye",
+    name: "İngiltere",
     icon: require("@/assets/images/flag-icons/turkiye.png"),
   },
 ];

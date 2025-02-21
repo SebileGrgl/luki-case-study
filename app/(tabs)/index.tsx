@@ -1,16 +1,16 @@
 import { ScrollView, StyleSheet, View } from "react-native";
-import StatisticsContainer from "@/components/StatisticsContainer";
+import StatisticsContainer from "@/components/profilePage/StatisticsContainer";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import ProfilePhoto from "@/components/Photo";
 import UserName from "@/components/UserName";
-import BadgesSection from "@/components/BadgesSection";
-import UserDetails from "@/components/UserDetails";
-import DirectionTags from "@/components/DirectionTags";
-import StoriesContainer from "@/components/StoriesContainer";
-import FilterOptions from "@/components/FilterOptions";
-import PostsContainer from "@/components/PostsContainer";
-import CallButtons from "@/components/CallButtons";
+import BadgesSection from "@/components/profilePage/BadgesSection";
+import UserDetails from "@/components/profilePage/UserDetails";
+import DirectionTags from "@/components/profilePage/DirectionTags";
+import StoriesContainer from "@/components/profilePage/StoriesContainer";
+import FilterOptions from "@/components/profilePage/FilterOptions";
+import PostsContainer from "@/components/profilePage/PostsContainer";
+import CallButtons from "@/components/profilePage/CallButtons";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function HomeScreen() {

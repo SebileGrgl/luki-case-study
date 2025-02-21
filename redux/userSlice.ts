@@ -9,7 +9,7 @@ const initialState: User = {
   nationality: "Türkiye",
   gender: "female",
   sign: "Aslan",
-  height: "167",
+  height: "167cm",
   weight: "54kg",
   job: "Mimar",
   location: "Türkiye",

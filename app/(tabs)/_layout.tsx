@@ -1,4 +1,4 @@
-import CustomBackButton from "@/components/CustomBackButton";
+import CustomBackButton from "@/components/profilePage/CustomBackButton";
 import { Stack } from "expo-router";
 import React from "react";
 export default function TabLayout() {

@@ -56,3 +56,9 @@ export type InfoTagProp = {
   text: string;
   icon: number;
 };
+
+export type InformationRowProps = {
+  icon: number;
+  title: string;
+  text: string | number;
+};
