@@ -46,3 +46,13 @@ export type UserNameProps = {
   userName: string;
   isVerified: boolean;
 };
+
+export type InfoTagsContainerProps = {
+  nationality: string;
+  sign: string;
+};
+
+export type InfoTagProp = {
+  text: string;
+  icon: number;
+};

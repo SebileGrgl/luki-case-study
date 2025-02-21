@@ -15,8 +15,7 @@ export default Badge;
 
 const styles = StyleSheet.create({
   container: {
-    paddingRight: 10,
-    paddingLeft: 10,
+    paddingHorizontal: 8,
     borderRadius: 29,
     flexDirection: "row",
     alignItems: "center",
@@ -27,7 +26,7 @@ const styles = StyleSheet.create({
   },
   text: {
     color: "white",
-    fontSize: 13,
+    fontSize: 11,
     fontWeight: 700,
   },
 });

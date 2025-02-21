@@ -6,30 +6,39 @@ import { RootState } from "@/redux/store";
 import ProfilePhoto from "@/components/Photo";
 import UserName from "@/components/UserName";
 import BadgesSection from "@/components/BadgesSection";
+import UserDetails from "@/components/UserDetails";
+import DirectionTags from "@/components/DirectionTags";
+import StoriesContainer from "@/components/StoriesContainer";
 
 export default function HomeScreen() {
   const user = useSelector((state: RootState) => state.user);
   return (
     <SafeAreaView>
-      <View style={styles.row1}>
-        <View style={styles.statistics}>
-          <StatisticsContainer user={user} />
+      <View style={styles.paddingContainer}>
+        <View style={styles.row1}>
+          <View style={styles.statistics}>
+            <StatisticsContainer user={user} />
+          </View>
+          <View style={styles.profilePhoto}>
+            <ProfilePhoto imageUrl={user.pp} />
+          </View>
         </View>
-        <View style={styles.profilePhoto}>
-          <ProfilePhoto imageUrl={user.pp} />
+        <View style={styles.row2}>
+          <UserName userName={user.username} isVerified={user.isVerified} />
+          <BadgesSection user={user} />
         </View>
+        <UserDetails user={user} />
+        <DirectionTags />
+        <StoriesContainer />
       </View>
-      <View style={styles.row2}>
-        <UserName userName={user.username} isVerified={user.isVerified} />
-        <BadgesSection user={user} />
-      </View>
-      <Link href="./biography">Biography</Link>
-      <Link href="./editProfile">Edit Profile</Link>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  paddingContainer: {
+    paddingHorizontal: 20,
+  },
   row1: {
     flexDirection: "row",
     alignItems: "center",
