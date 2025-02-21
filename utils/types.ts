@@ -1,5 +1,3 @@
-import { ImageSourcePropType } from "react-native";
-
 export type User = {
   id: string;
   username: string;
@@ -60,5 +58,17 @@ export type InfoTagProp = {
 export type InformationRowProps = {
   icon: number;
   title: string;
-  text: string | number;
+  text: string;
+};
+
+export type editInfoRowProps = {
+  icon: number;
+  title: string;
+  text: string;
+  keyValue: string;
+};
+
+export type Option = {
+  name: string;
+  icon: number;
 };

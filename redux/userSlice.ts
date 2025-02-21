@@ -38,8 +38,12 @@ const initialState: User = {
 const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {},
+  reducers: {
+    updateUser: (state, action) => {
+      return { ...state, ...action.payload };
+    },
+  },
 });
 
-export const {} = userSlice.actions;
+export const { updateUser } = userSlice.actions;
 export default userSlice.reducer;
