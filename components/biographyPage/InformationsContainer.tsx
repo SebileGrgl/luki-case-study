@@ -7,11 +7,11 @@ import { userInformationTags } from "@/constants/userInformationTags";
 const InformationsContainer = ({ user }: { user: User }) => {
   return (
     <View style={styles.container}>
-      <Text>{user.hobbies}</Text>
+      <Text>{user.biography}</Text>
       {userInformationTags.map((item) => (
         <InformationRow
-          icon={item.icon}
-          title={item.title}
+          key={item.key}
+          item={item}
           text={user[item.key as keyof User]}
         />
       ))}

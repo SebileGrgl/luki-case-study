@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import React from "react";
 import { useSelector } from "react-redux";
@@ -11,11 +11,13 @@ const EditProfile = () => {
 
   return (
     <SafeAreaView style={{ paddingHorizontal: 25 }}>
-      <View style={styles.imageContainer}>
-        <Photo imageUrl={user.pp} />
-        <Text style={styles.editTitle}>Profil Resmini Düzenle</Text>
-      </View>
-      <EditContainer user={user} />
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View style={styles.imageContainer}>
+          <Photo imageUrl={user.pp} />
+          <Text style={styles.editTitle}>Profil Resmini Düzenle</Text>
+        </View>
+        <EditContainer user={user} />
+      </ScrollView>
     </SafeAreaView>
   );
 };

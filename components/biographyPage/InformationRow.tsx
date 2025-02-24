@@ -3,7 +3,7 @@ import React from "react";
 import { InformationRowProps } from "@/utils/types";
 import { countries } from "@/constants/countries";
 
-const InformationRow = ({ icon, title, text }: InformationRowProps) => {
+const InformationRow = ({ item, text }: InformationRowProps) => {
   const findIcon = () => {
     const country = countries.find((item) => item.name === text);
     return country?.icon;
@@ -11,11 +11,14 @@ const InformationRow = ({ icon, title, text }: InformationRowProps) => {
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>
-        <Image source={icon} />
-        <Text style={styles.title}>{title}</Text>
+        <Image source={item.icon} />
+        <Text style={styles.title}>{item.title}</Text>
       </View>
       <View style={styles.textContainer}>
-        <Text style={styles.text}>{text}</Text>
+        <Text style={styles.text}>
+          {text}{" "}
+          {item.key === "weight" ? "kg" : item.key === "height" ? "cm" : ""}
+        </Text>
         {text === "Türkiye" && (
           <Image style={styles.icon} source={findIcon()} />
         )}

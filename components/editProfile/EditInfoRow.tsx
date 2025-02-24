@@ -1,128 +1,103 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  TextInput,
-  Image,
-} from "react-native";
-import React, { useState } from "react";
-import { Option, User } from "@/utils/types";
+import { View, StyleSheet, Image } from "react-native";
+import { Controller } from "react-hook-form";
+import { TextInput, Text } from "react-native-paper";
 import { countries } from "@/constants/countries";
 import { signs } from "@/constants/signs";
-import { useDispatch } from "react-redux";
-import { updateUser } from "@/redux/userSlice";
+import { SelectList } from "react-native-dropdown-select-list";
 
-interface EditInfoRowProps {
-  icon: number;
-  title: string;
-  text: string;
-  keyValue: keyof User;
-}
-
-const EditInfoRow = ({ icon, title, text, keyValue }: EditInfoRowProps) => {
-  const [newValue, setNewValue] = useState(text);
-  const [showDropdown, setShowDropdown] = useState(false);
-  const dispatch = useDispatch();
-
-  const renderDropdown = () => {
-    let options: Option[] = [];
-    if (keyValue === "nationality" || keyValue === "location") {
-      options = countries;
-    } else if (keyValue === "sign") {
-      options = signs;
-    }
-
-    if (options.length > 0) {
-      return (
-        <View style={styles.dropdown}>
-          {options.map((option) => (
-            <TouchableOpacity
-              key={option.name}
-              style={styles.dropdownItem}
-              onPress={() => {
-                handleInputChange(option.name);
-                setShowDropdown(false);
-              }}
-            >
-              <Text>{option.name}</Text>
-            </TouchableOpacity>
-          ))}
-        </View>
-      );
-    }
-    return null;
-  };
-
-  const handleInputChange = (value: string) => {
-    setNewValue(value);
-    dispatch(updateUser({ [keyValue]: value }));
-  };
+const EditInfoRow = ({ icon, label, control, name, rules }: any) => {
+  let data: any = [];
+  if (["nationality", "location"].includes(name))
+    data = countries.map((item) => {
+      return { key: item.name, value: item.name };
+    });
+  if (name === "sign")
+    data = signs.map((item) => {
+      return { key: item.name, value: item.name };
+    });
 
   return (
     <View style={styles.row}>
       <View style={styles.titleContainer}>
-        <Image source={icon} style={styles.icon} resizeMode="contain" />
-        <Text style={styles.title}>{title}</Text>
+        <Image
+          style={{ width: 22, height: 22 }}
+          source={icon}
+          resizeMode="contain"
+        />
+        <Text style={styles.label}>{label}</Text>
       </View>
-      <View style={styles.textContainer}>
-        <View>
-          {["nationality", "sign", "location"].includes(keyValue) ? (
-            <TouchableOpacity onPress={() => setShowDropdown(!showDropdown)}>
-              <Text style={{ fontSize: 15 }}>{newValue}</Text>
-            </TouchableOpacity>
-          ) : (
-            <TextInput
-              style={{ fontSize: 15 }}
-              value={newValue}
-              onChangeText={handleInputChange}
-            />
-          )}
-          {showDropdown && renderDropdown()}
-        </View>
-      </View>
+      <Controller
+        control={control}
+        name={name}
+        rules={rules}
+        render={({ field: { onChange, value }, fieldState: { error } }) => (
+          <View style={styles.errorContainer}>
+            {data.length > 0 ? (
+              <SelectList
+                setSelected={(val: string) => onChange(val)}
+                data={data}
+                save="value"
+                placeholder={`Seçiniz`}
+                boxStyles={styles.dropdown}
+                defaultOption={{ key: value, value: value }}
+              />
+            ) : (
+              <TextInput
+                value={value}
+                onChangeText={onChange}
+                mode="flat"
+                style={styles.input}
+                underlineColor="#ccc"
+                activeUnderlineColor="#8474DE"
+              />
+            )}
+            {error && <Text style={styles.errorMessage}>{error.message}</Text>}
+          </View>
+        )}
+      />
     </View>
   );
 };
 
+export default EditInfoRow;
 const styles = StyleSheet.create({
   row: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 25,
+    paddingVertical: 8,
   },
   titleContainer: {
+    maxWidth: 120,
     flexDirection: "row",
-    gap: 10,
     alignItems: "center",
+    gap: 12,
+  },
+  label: {
     flex: 1,
+    fontSize: 16,
+    fontWeight: "500",
   },
-  icon: {
-    width: 25,
-    height: 25,
-  },
-  textContainer: {
-    flex: 3,
-  },
-  title: {
-    fontWeight: 600,
-    maxWidth: 80,
+  input: {
+    backgroundColor: "transparent",
+    borderBottomWidth: 0.1,
+    paddingHorizontal: 0,
     fontSize: 15,
   },
-
-  dropdown: {
-    position: "absolute",
-    top: 26,
-    left: 0,
-    backgroundColor: "#E1E1E1",
-    borderRadius: 5,
-    zIndex: 1,
-    gap: 2,
+  errorContainer: {
+    flexDirection: "column",
+    flex: 2,
+    gap: 8,
   },
-  dropdownItem: {
+  errorMessage: {
+    color: "#8474DE",
+    fontSize: 12,
+  },
+  dropdown: {
     paddingVertical: 10,
-    paddingHorizontal: 25,
+    paddingHorizontal: 0,
+    borderRadius: 5,
+    borderWidth: 0,
+    borderBottomWidth: 0.3,
+    borderColor: "#ccc",
   },
 });
-
-export default EditInfoRow;

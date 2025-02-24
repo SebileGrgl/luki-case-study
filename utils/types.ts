@@ -2,12 +2,12 @@ export type User = {
   id: string;
   username: string;
   pp: any;
-  hobbies: string;
+  biography: string;
   nationality: string;
   gender: string;
   sign: string;
-  height: string;
-  weight: string;
+  height: number;
+  weight: number;
   job: string;
   location: string;
   dob: string;
@@ -56,19 +56,37 @@ export type InfoTagProp = {
 };
 
 export type InformationRowProps = {
-  icon: number;
-  title: string;
+  item: Information;
   text: string;
+};
+
+export type editInfo = {
+  username: string;
+  biography: string;
+  nationality: string;
+  sign: string;
+  height: string;
+  weight: string;
+  job: string;
+  location: string;
+  dob: string;
+};
+
+export type Information = {
+  key: string;
+  title: string;
+  icon: number;
 };
 
 export type editInfoRowProps = {
-  icon: number;
-  title: string;
-  text: string;
-  keyValue: string;
+  item: Information;
+  handleChange: (name: keyof User, value: string) => void;
+  handleDateChange: (param: string) => void;
+  value: string;
+  error: string;
 };
 
 export type Option = {
-  name: string;
-  icon: number;
+  key: string;
+  value: string;
 };

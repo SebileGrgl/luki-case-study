@@ -9,7 +9,7 @@ const UserDetails = ({ user }: { user: User }) => {
   return (
     <View style={styles.container}>
       <InfoTagsContainer nationality={user.nationality} sign={user.sign} />
-      <Text>{user.hobbies}</Text>
+      <Text>{user.biography}</Text>
       <Link href="/biography" style={styles.rightIcon}>
         <AntDesign name="right" size={24} color="black" />
       </Link>
